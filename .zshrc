@@ -10,6 +10,7 @@ if [[ -f "/opt/homebrew/bin/brew" ]] then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
+export GPG_TTY=$(tty)
 export LS_COLORS="di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 export FZF_DEFAULT_OPTS="
     --color=fg:#f8f8f2,bg:#282a36,hl:#8be9fd
