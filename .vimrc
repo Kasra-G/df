@@ -1,7 +1,18 @@
 " Map 'jj' to Escape
 inoremap jj <Esc>
 set noshowmode
-let g:lightline = {'colorscheme': 'one'}
+
+" Status Line Configs - Use color scheme 'One' and show current git branch
+let g:lightline = {
+ \    'colorscheme': 'one',
+ \    'active': {
+ \      'left': [ [ 'mode', 'paste' ],
+ \                [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+ \    },
+ \    'component_function': {
+ \      'gitbranch': 'gitbranch#name'
+ \    },
+ \ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer:
