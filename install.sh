@@ -15,7 +15,7 @@ else
 	exit 1
 fi
 echo "Installing utils"
-brew install git stow coreutils fzf zoxide gpg tmux nvim
+brew install git stow coreutils fzf zoxide gpg tmux neovim
 echo "Installing font"
 if [ "$(uname)" == "Darwin" ]; then
  brew install --cask font-hack-nerd-font
@@ -38,6 +38,6 @@ echo "Stowing"
 stow .
 # Additional utilities to install
 echo "Installing additional utilities"
-brew install btop
+brew install btop go make maven tree
 echo "Installation complete, remember to create GPG Signing Key"
 source $HOME/.zshrc
