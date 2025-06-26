@@ -41,6 +41,7 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
+zinit light undg/zsh-nvm-lazy-load
 
 # Add in snippets
 zinit snippet "https://raw.githubusercontent.com/MichaelAquilina/zsh-you-should-use/refs/heads/master/you-should-use.plugin.zsh"
