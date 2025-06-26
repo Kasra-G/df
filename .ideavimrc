@@ -1,2 +1,14 @@
-source ~/.vimrc
+set multicursor
 
+" Quick search-select
+map q <Plug>(multicursor-ms/)
+
+" Quick cursor add/apply
+map z <Plug>(multicursor-mcc)
+map Z <Plug>(multicursor-mci)
+
+" Word-based selections
+map <leader>w <Plug>(multicursor-msw)
+map <leader>b <Plug>(multicursor-msb)
+
+source ~/.vimrc

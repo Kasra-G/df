@@ -43,6 +43,7 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
 # Add in snippets
+zinit snippet "https://raw.githubusercontent.com/MichaelAquilina/zsh-you-should-use/refs/heads/master/you-should-use.plugin.zsh"
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::archlinux
@@ -68,6 +69,7 @@ bindkey -v
 bindkey -M viins 'jj' vi-cmd-mode
 bindkey '^[w' kill-region
 bindkey '^[[Z' autosuggest-accept
+bindkey "^?" backward-delete-char
 
 
 # History
