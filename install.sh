@@ -15,7 +15,7 @@ else
 	exit 1
 fi
 echo "Installing utils"
-brew install git stow coreutils fzf zoxide gpg tmux
+brew install git stow coreutils fzf zoxide gpg tmux nvim
 echo "Installing font"
 if [ "$(uname)" == "Darwin" ]; then
  brew install --cask font-hack-nerd-font

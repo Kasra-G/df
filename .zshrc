@@ -71,7 +71,6 @@ bindkey '^[w' kill-region
 bindkey '^[[Z' autosuggest-accept
 bindkey "^?" backward-delete-char
 
-
 # History
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
@@ -99,7 +98,8 @@ zstyle ':fzf-tab:*' fzf-options $(echo $FZF_DEFAULT_OPTS)
 
 # Aliases
 alias ls="gls --color"
-#alias vim='nvim'
+
+function vim() { nvim "$@" }
 alias c='clear'
 
 # Shell integrations
