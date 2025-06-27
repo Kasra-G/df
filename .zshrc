@@ -5,6 +5,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+function zvm_config() {
+  ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+  ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
+}
+
 if [[ -f "/opt/homebrew/bin/brew" ]] then
   # MacOS
   eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -36,6 +41,8 @@ source "${ZINIT_HOME}/zinit.zsh"
 # Add in Powerlevel10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
+# Add in better vi mode
+zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
@@ -55,8 +62,6 @@ zinit snippet OMZP::command-not-found
 
 # Load completions
 autoload -Uz compinit && compinit
-autoload -Uz add-zle-hook-widget
-add-zle-hook-widget line-init vi-cmd-mode
 
 zinit cdreplay -q
 
@@ -67,7 +72,6 @@ zinit cdreplay -q
 #bindkey '^p' history-search-backward
 #bindkey '^n' history-search-forward
 bindkey -v
-bindkey -M viins 'jj' vi-cmd-mode
 bindkey '^[w' kill-region
 bindkey '^[[Z' autosuggest-accept
 bindkey "^?" backward-delete-char
