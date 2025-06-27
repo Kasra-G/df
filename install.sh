@@ -38,6 +38,6 @@ echo "Stowing"
 stow .
 # Additional utilities to install
 echo "Installing additional utilities"
-brew install btop go make maven tree
+brew install btop go make maven tree ripgrep
 echo "Installation complete, remember to create GPG Signing Key"
 source $HOME/.zshrc
