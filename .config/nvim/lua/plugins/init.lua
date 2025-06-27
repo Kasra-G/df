@@ -115,6 +115,9 @@ return {
       hl(0, "MultiCursorDisabledSign", { link = "SignColumn" })
     end,
   },
+  {
+    "duane9/nvim-rg",
+  },
 
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },

@@ -1,5 +1,15 @@
 require("nvchad.configs.lspconfig").defaults()
 
+vim.lsp.config("jedi_language_server", {
+  settings = {
+    initializationOptions = {
+      semanticTokens = {
+        enable = true,
+      },
+    },
+  },
+})
+
 local servers = {
   "html",
   "cssls",

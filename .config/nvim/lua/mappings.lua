@@ -12,6 +12,7 @@ map("v", "<leader>fs", function()
 end)
 
 map("n", "<leader>r", vim.lsp.buf.rename)
+map("n", "<leader>gr", vim.lsp.buf.references)
 
 map({"n", "i"}, "<C-h>", "<cmd>TmuxNavigateLeft<cr>", { desc = "window left" })
 map({"n", "i"}, "<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "window right" })
