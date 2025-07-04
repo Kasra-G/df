@@ -1,10 +1,16 @@
 require("nvchad.configs.lspconfig").defaults()
 
-vim.lsp.config("jedi_language_server", {
+vim.lsp.config("basedpyright", {
   settings = {
-    initializationOptions = {
-      semanticTokens = {
-        enable = true,
+    basedpyright = {
+      analysis = {
+        useLibraryCodeForTypes = true,
+        typeCheckingMode = "basic",
+        diagnosticMode = "workspace",
+        autoSearchPath = true,
+        inlayHints = {
+          callArgumentNames = true,
+        },
       },
     },
   },
@@ -13,11 +19,12 @@ vim.lsp.config("jedi_language_server", {
 local servers = {
   "html",
   "cssls",
-  "jedi_language_server",
+  "basedpyright",
   "ts_ls",
   "svelte",
   "bashls",
-  "systemd_ls",
+  "kotlin_lsp",
+  -- "systemd_ls",
   "awk_ls",
 }
 vim.lsp.enable(servers)

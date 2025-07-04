@@ -11,11 +11,17 @@ local options = {
     javascript = { "prettier" },
   },
 
-  format_on_save = {
-    -- These options will be passed to conform.format()
-    timeout_ms = 500,
-    lsp_fallback = true,
+  formatters = {
+    autopep8 = {
+      prepend_args = { "--ignore=E501" },
+    },
   },
+
+  -- format_on_save = {
+  --   -- These options will be passed to conform.format()
+  --   timeout_ms = 500,
+  --   lsp_fallback = true,
+  -- },
 }
 
 return options

@@ -1,8 +1,14 @@
 require "nvchad.mappings"
+local gitsigns = require "gitsigns"
+local diffview = require "diffview"
 
 -- add yours here
 
 local map = vim.keymap.set
+
+map("n", "<leader>gdo", diffview.open, {desc="git open diffview"})
+map("n", "<leader>gdc", diffview.close, {desc="git close diffview"})
+map("n", "<leader>gf", function() diffview.file_history(nil, "%") end, {desc="git open file history for file"})
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jj", "<ESC>", { silent = true })
@@ -19,11 +25,14 @@ map({ "n", "i" }, "<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "window right"
 map({ "n", "i" }, "<C-j>", "<cmd>TmuxNavigateDown<cr>", { desc = "window down" })
 map({ "n", "i" }, "<C-k>", "<cmd>TmuxNavigateUp<cr>", { desc = "window up" })
 map({ "n", "i" }, "<C-\\>", "<cmd>TmuxNavigatePrevious<cr>", { desc = "window last" })
-map("n", "<leader>eo", "<cmd>NvimTreeFindFile<return>", { desc = "open tree to file" })
 map(
   "n",
   "<leader>fg",
   ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
   { desc = "telescope live grep args" }
 )
--- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+
+-- gitsigns
+
+map({ "n" }, "<leader>gb", gitsigns.blame, { desc = "git toggle blame for file" })
+

@@ -6,7 +6,7 @@ o.so = 10
 o.cursorlineopt = "both" -- to enable cursorline!
 o.relativenumber = true
 o.cmdheight = 0
-
+o.sessionoptions = "buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 -- add yours here!
-vim.g["tmux_navigator_no_wrap"] = 1
+vim.g.tmux_navigator_no_wrap = 1
 -- local o = vim.o
