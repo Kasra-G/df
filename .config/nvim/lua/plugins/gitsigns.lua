@@ -46,10 +46,8 @@ return {
         map("n", "<leader>gp", gitsigns.preview_hunk, { desc = "git preview hunk" })
         map("n", "<leader>gi", gitsigns.preview_hunk_inline, { desc = "git preview hunk inline" })
 
-        map("n", "<leader>gU", gitsigns.reset_buffer_index)
+        map("n", "<leader>gU", gitsigns.reset_buffer_index, { desc = "git unstage buffer" })
         map("n", "<leader>gb", gitsigns.blame, { desc = "git toggle blame for file" })
-
-        map("n", "<leader>gd", gitsigns.diffthis, { desc = "git diff this file" })
 
         map("n", "<leader>gD", function()
           gitsigns.diffthis "~"

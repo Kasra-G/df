@@ -1,24 +1,12 @@
 require "nvchad.mappings"
-local gitsigns = require "gitsigns"
-local diffview = require "diffview"
-
--- add yours here
 
 local map = vim.keymap.set
 
-map("n", "<leader>gdo", diffview.open, {desc="git open diffview"})
-map("n", "<leader>gdc", diffview.close, {desc="git close diffview"})
-map("n", "<leader>gf", function() diffview.file_history(nil, "%") end, {desc="git open file history for file"})
-
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jj", "<ESC>", { silent = true })
-map("n", "<leader><cr>", ":nohlsearch<cr>", { silent = true })
 map("v", "<leader>fs", function()
   require("conform").format { async = true, lsp_fallback = true }
 end)
-
-map("n", "<leader>r", vim.lsp.buf.rename)
-map("n", "<leader>gr", vim.lsp.buf.references)
 
 map({ "n", "i" }, "<C-h>", "<cmd>TmuxNavigateLeft<cr>", { desc = "window left" })
 map({ "n", "i" }, "<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "window right" })
@@ -31,5 +19,3 @@ map(
   ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
   { desc = "telescope live grep args" }
 )
-
--- gitsigns
