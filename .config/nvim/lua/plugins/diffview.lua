@@ -54,7 +54,8 @@ return {
         end,
         { desc = "toggle diff view" },
       },
-      { "<leader>gf", "<cmd>DiffviewFileHistory %<cr>", { desc = "git open file history" } },
+      { "<leader>gf", "<cmd>DiffviewFileHistory %<cr>", mode = "n", desc = "git open file history" },
+      { "<leader>gf", "<cmd>'<,'>DiffviewFileHistory<cr>", mode = "v", desc = "git open file history" },
     },
   },
 }
