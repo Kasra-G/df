@@ -1,7 +1,6 @@
 return {
   {
     "kdheepak/lazygit.nvim",
-    lazy = true,
     cmd = {
       "LazyGit",
       "LazyGitConfig",
@@ -18,7 +17,6 @@ return {
     -- order to load the plugin when the command is run for the first time
     keys = {
       { "<leader>lg", "<cmd>:LazyGit<cr>", desc = "LazyGit" },
-      { "<leader>gg", "<cmd>:LazyGitCurrentFile<cr>", desc = "LazyGit" },
     },
   },
 }

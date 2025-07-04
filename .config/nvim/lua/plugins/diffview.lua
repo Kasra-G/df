@@ -52,10 +52,10 @@ return {
             vim.cmd "DiffviewClose"
           end
         end,
-        { desc = "toggle diff view" },
+        desc = "git toggle diff view",
       },
       { "<leader>gf", "<cmd>DiffviewFileHistory %<cr>", mode = "n", desc = "git open file history" },
-      { "<leader>gf", "<cmd>'<,'>DiffviewFileHistory<cr>", mode = "v", desc = "git open file history" },
+      { "<leader>gf", "<cmd>'<,'>DiffviewFileHistory<cr>", mode = "v", desc = "git open file history for range" },
     },
   },
 }

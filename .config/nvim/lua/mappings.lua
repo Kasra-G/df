@@ -4,9 +4,6 @@ local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jj", "<ESC>", { silent = true })
-map("v", "<leader>fs", function()
-  require("conform").format { async = true, lsp_fallback = true }
-end)
 
 map({ "n", "i" }, "<C-h>", "<cmd>TmuxNavigateLeft<cr>", { desc = "window left" })
 map({ "n", "i" }, "<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "window right" })
