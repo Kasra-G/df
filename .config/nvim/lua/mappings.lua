@@ -33,6 +33,3 @@ map(
 )
 
 -- gitsigns
-
-map({ "n" }, "<leader>gb", gitsigns.blame, { desc = "git toggle blame for file" })
-
