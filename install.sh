@@ -8,7 +8,7 @@ if [ "$(uname)" == "Darwin" ]; then
 	eval "$(/opt/homebrew/bin/brew shellenv)"
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 	echo 'Linux Detected'
-	(echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/ghkasra/.zshrc
+	(echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> $HOME/.zprofile
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 else
 	echo 'OS not supported'
