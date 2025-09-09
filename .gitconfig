@@ -3,4 +3,6 @@
 [user]
 	name = Kasra Ghaffari
 	email = 18647702+Kasra-G@users.noreply.github.com
-	signingkey = 79E128E0D45F8897ECF8018446B0B1EB527C7672
+	signingkey = /home/ghkasra/.ssh/id_ed25519.pub
+[gpg]
+	format = ssh
