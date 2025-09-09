@@ -18,12 +18,9 @@ echo "Installing utils"
 brew install git stow coreutils fzf zoxide gpg tmux neovim
 echo "Installing font"
 if [ "$(uname)" == "Darwin" ]; then
- brew install --cask font-hack-nerd-font
+ brew install font-hack-nerd-font
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
- git clone --filter=blob:none --sparse git@github.com:ryanoasis/nerd-fonts
- cd nerd-fonts
- git sparse-checkout add patched-fonts/Hack
- ./install.sh Hack
+ brew install --cask font-hack-nerd-font
 fi
 
 echo "Generating SSH Key for Git"
@@ -38,6 +35,7 @@ echo "Stowing"
 stow .
 # Additional utilities to install
 echo "Installing additional utilities"
-brew install btop go make maven tree ripgrep lazygit
+brew install btop go make maven tree ripgrep lazygit awscli node
+npm install -g cdk
 echo "Installation complete, remember to create GPG Signing Key"
 source $HOME/.zshrc
