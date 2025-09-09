@@ -111,4 +111,6 @@ alias c='clear'
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
-export PATH=$(zsh -fc "typeset -TU P=$PATH p; echo \$P")
+typeset -TUx PATH path
+
+export PATH="${(j[:])path}"
