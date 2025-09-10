@@ -8,6 +8,9 @@ return {
       renderer = {
         group_empty = true,
       },
+      git = {
+        timeout = 1000,
+      },
       filters = {
         -- dotfiles = false,
         -- git_clean = false,
