@@ -35,7 +35,6 @@ echo "Stowing"
 stow .
 # Additional utilities to install
 echo "Installing additional utilities"
-brew install btop go make maven tree ripgrep lazygit awscli node
-npm install -g cdk
+brew install btop go make maven tree ripgrep lazygit awscli node aws-cdk
 echo "Installation complete, remember to create GPG Signing Key"
 source $HOME/.zshrc
