@@ -16,3 +16,4 @@ map(
   ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
   { desc = "telescope live grep args" }
 )
+map("n", "<leader>cc", "<cmd>cclose<cr>", { desc = "close quickfix menu" })
