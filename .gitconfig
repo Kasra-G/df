@@ -3,7 +3,7 @@
 [user]
 	name = Kasra Ghaffari
 	email = 18647702+Kasra-G@users.noreply.github.com
-	signingkey = /home/ghkasra/.ssh/id_ed25519.pub
+	signingkey = ~/.ssh/id_ed25519.pub
 [gpg]
 	format = ssh
 [filter "lfs"]
