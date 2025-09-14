@@ -1,2 +1,2 @@
-.config/tmux/plugins/
-.tmux/resurrect/
+.config/tmux/plugins/*
+!.config/tmux/plugins/tpm
