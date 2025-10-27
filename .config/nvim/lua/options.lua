@@ -8,5 +8,5 @@ o.relativenumber = true
 o.cmdheight = 0
 o.sessionoptions = "buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 -- add yours here!
-vim.g.tmux_navigator_no_wrap = 1
+vim.g.tmux_navigator_save_on_switch = 2
 -- local o = vim.o
