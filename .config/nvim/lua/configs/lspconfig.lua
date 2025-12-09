@@ -26,7 +26,6 @@ local servers = {
   "bashls",
   "kotlin_lsp",
   -- "systemd_ls",
-  "awk_ls",
 }
 vim.lsp.enable(servers)
 
