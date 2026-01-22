@@ -22,6 +22,8 @@ return {
         "sql",
         "python",
         "typescript",
+        "markdown",
+        "markdown_inline",
         "jsonl",
       }
     end,

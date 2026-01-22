@@ -18,7 +18,7 @@ map(
 )
 map("n", "<leader>cc", "<cmd>cclose<cr>", { desc = "close quickfix menu" })
 
-map("n", "<leader>bcu", function()
+map("n", "<leader>cu", function()
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
     if vim.api.nvim_buf_is_loaded(buf) then
       local file = vim.api.nvim_buf_get_name(buf)
@@ -35,7 +35,7 @@ map("n", "<leader>bcu", function()
   end
 end, { desc = "Close unchanged buffers" })
 
-map("n", "<leader>bco", function()
+map("n", "<leader>co", function()
   local current_buf = vim.api.nvim_get_current_buf()
   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
     if bufnr ~= current_buf and vim.api.nvim_buf_is_loaded(bufnr) then
