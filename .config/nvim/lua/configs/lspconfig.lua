@@ -1,25 +1,25 @@
 require("nvchad.configs.lspconfig").defaults()
 
-vim.lsp.config("basedpyright", {
-  settings = {
-    basedpyright = {
-      analysis = {
-        useLibraryCodeForTypes = true,
-        typeCheckingMode = "basic",
-        diagnosticMode = "workspace",
-        autoSearchPath = true,
-        inlayHints = {
-          callArgumentNames = true,
-        },
-      },
-    },
-  },
-})
+-- vim.lsp.config("ty", {
+--   settings = {
+--     ty = {
+--       analysis = {
+--         useLibraryCodeForTypes = true,
+--         typeCheckingMode = "basic",
+--         diagnosticMode = "workspace",
+--         autoSearchPath = true,
+--         inlayHints = {
+--           callArgumentNames = true,
+--         },
+--       },
+--     },
+--   },
+-- })
 
 local servers = {
   "html",
   "cssls",
-  "basedpyright",
+  "ty",
   -- "ts_ls",
   -- "svelte",
   -- "typescript-tools",
