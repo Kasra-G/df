@@ -16,10 +16,19 @@ require("nvchad.configs.lspconfig").defaults()
 --   },
 -- })
 
+vim.lsp.config("jdtls", {
+  settings = {
+    java = {
+      format = { enabled = false },
+    },
+  },
+})
+
 local servers = {
   "html",
   "cssls",
   "ty",
+  "jdtls",
   -- "ts_ls",
   -- "svelte",
   -- "typescript-tools",
