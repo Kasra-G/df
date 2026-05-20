@@ -1,14 +1,16 @@
-set multicursor
+let mapleader = " "
 
-" Quick search-select
-map q <Plug>(multicursor-ms/)
+nnoremap <leader>ra :action RenameElement<CR>
+nnoremap <leader>rr :action RefactorThis<CR>
+nnoremap <Leader>ric :action IntroduceConstant<CR>
+nnoremap <Leader>riv :action IntroduceVariable<CR>
 
-" Quick cursor add/apply
-map z <Plug>(multicursor-mcc)
-map Z <Plug>(multicursor-mci)
+vnoremap <Leader>ric :action IntroduceConstant<CR>
+vnoremap <Leader>riv :action IntroduceVariable<CR>
+vnoremap <Leader>ref :action ExtractFunction<CR>
 
-" Word-based selections
-map <leader>w <Plug>(multicursor-msw)
-map <leader>b <Plug>(multicursor-msb)
+nnoremap <Tab> :tabnext<CR>
+nnoremap <S-Tab> :tabprevious<CR>
+nnoremap <leader>x :tabclose<CR>
 
 source ~/.vimrc
