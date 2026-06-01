@@ -119,6 +119,18 @@ eval "$(keychain --eval -q)"
 
 [ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" > /dev/null
 
-typeset -TUx PATH path
+export PATH="$HOME/.local/share/bob/nvim-bin/:$PATH"
+export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
+export JAVA_HOME="/opt/homebrew/Cellar/openjdk/25.0.2"
 
+typeset -TUx PATH path
 export PATH="${(j[:])path}"
+
+export AWS_PROFILE=ghkasra-personal-admin
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
