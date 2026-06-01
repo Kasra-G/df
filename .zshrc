@@ -120,11 +120,11 @@ eval "$(keychain --eval -q)"
 
 [ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" > /dev/null
 
-export PATH="$HOME/.local/share/bob/nvim-bin/:$PATH"
-export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
-export JAVA_HOME="/opt/homebrew/Cellar/openjdk/25.0.2"
 export BREW_HOME="$(brew --prefix)/bin"
 export PATH="$BREW_HOME:$PATH"
+
+export JAVA_HOME="$(brew --prefix)/Cellar/openjdk/25.0.2"
+export PATH="$BREW_HOME/opt/sqlite/bin:$PATH"
 export PATH="$XDG_DATA_HOME/bob/nvim-bin:$PATH"
 
 # Generated for envman. Do not edit.
