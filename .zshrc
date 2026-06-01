@@ -22,6 +22,7 @@ elif [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]] then
   # Linux
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
+
 export GPG_TTY=$(tty)
 export LS_COLORS="di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 export FZF_DEFAULT_OPTS="
@@ -122,15 +123,22 @@ eval "$(keychain --eval -q)"
 export PATH="$HOME/.local/share/bob/nvim-bin/:$PATH"
 export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
 export JAVA_HOME="/opt/homebrew/Cellar/openjdk/25.0.2"
-
-typeset -TUx PATH path
-export PATH="${(j[:])path}"
-
-export AWS_PROFILE=ghkasra-personal-admin
+export BREW_HOME="$(brew --prefix)/bin"
+export PATH="$BREW_HOME:$PATH"
+export PATH="$XDG_DATA_HOME/bob/nvim-bin:$PATH"
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
+export AWS_PROFILE=ghkasra-personal-admin
+
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+typeset -TUx PATH path
+export PATH="${(j[:])path}"
