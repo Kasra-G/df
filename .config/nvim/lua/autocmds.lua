@@ -5,13 +5,34 @@ vim.api.nvim_create_autocmd("QuitPre", {
     local wins = vim.api.nvim_list_wins()
     for _, w in ipairs(wins) do
       local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(w))
-      if bufname:match("NvimTree_") ~= nil then
+      if bufname:match "NvimTree_" ~= nil then
         table.insert(invalid_win, w)
       end
     end
     if #invalid_win == #wins - 1 then
       -- Should quit, so we close all invalid windows.
-      for _, w in ipairs(invalid_win) do vim.api.nvim_win_close(w, true) end
+      for _, w in ipairs(invalid_win) do
+        vim.api.nvim_win_close(w, true)
+      end
     end
-  end
+  end,
+})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "lua",
+    "python",
+    "kotlin",
+    "java",
+    "typescript",
+    "svelte",
+    "html",
+    "css",
+    "sql",
+    "json",
+    "markdown",
+    "javascript",
+  },
+  callback = function()
+    vim.treesitter.start()
+  end,
 })

@@ -1,30 +1,23 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = {"AJamesyD/tree-sitter-jsonl" },
+    -- dependencies = {"AJamesyD/tree-sitter-jsonl" },
     lazy = false,
-    opts = function(_, opts)
-      require('nvim-treesitter.parsers').get_parser_configs().jsonl = {
-        install_info = {
-          url = "https://github.com/AJamesyD/tree-sitter-jsonl",
-          files = { "src/parser.c" },
-          branch = "mainline",
-        }
-      }
-      opts.ensure_installed = {
-        "vim",
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter").install {
         "lua",
-        "vimdoc",
-        "html",
-        "css",
+        "python",
         "kotlin",
         "java",
-        "sql",
-        "python",
         "typescript",
+        "svelte",
+        "html",
+        "css",
+        "sql",
+        "json",
         "markdown",
-        "markdown_inline",
-        "jsonl",
+        "javascript",
       }
     end,
   },
