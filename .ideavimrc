@@ -13,4 +13,20 @@ nnoremap <Tab> :tabnext<CR>
 nnoremap <S-Tab> :tabprevious<CR>
 nnoremap <leader>x :tabclose<CR>
 
+" Enable the built-in NERDTree emulation
+set nerdtree
+
+" Map Ctrl+N to toggle the file tree like nvim-tree
+nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+set commentary
+nnoremap <leader>/ :action CommentByLineComment<CR>
+vnoremap <leader>/ :action CommentByLineComment<CR>
+
+nnoremap <leader>lg :action CheckinProject<CR>
+
 source ~/.vimrc
