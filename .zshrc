@@ -115,6 +115,9 @@ alias c='clear'
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+eval "$(keychain --eval -q)"
+
+[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" > /dev/null
 
 typeset -TUx PATH path
 
