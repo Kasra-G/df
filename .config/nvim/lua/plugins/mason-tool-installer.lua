@@ -13,6 +13,8 @@ return {
         "typescript-language-server",
         "fixjson",
         "yamlfix",
+        "kotlin-lsp",
+        -- "gradle-language-server",
         "bash-language-server",
         "stylua",
         "lua-language-server",
