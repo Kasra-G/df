@@ -5,14 +5,15 @@ return {
   config = function()
     require("ufo").setup {
       close_fold_kinds_for_ft = {
-        default = {'imports', 'comment'},
+        default = { "imports", "comment" },
       },
       provider_selector = function(bufnr, filetype, buftype)
         return { "lsp", "indent" }
       end,
       preview = {
         win_config = {
-          winhighlight = "Normal:Folded",
+          winhighlight = "Normal:Normal",
+          winblend = 5,
         },
       },
       enable_get_fold_virt_text = true,
