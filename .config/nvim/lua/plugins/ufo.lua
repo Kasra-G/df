@@ -39,7 +39,7 @@ return {
           cur_width = cur_width + chunk_width
         end
         table.insert(result, { " ⋯ ", "NonText" })
-        table.insert(result, { suffix, "TSPunctBracket" })
+        table.insert(result, { suffix, "@punctuation.bracket" })
         return result
       end,
     }
