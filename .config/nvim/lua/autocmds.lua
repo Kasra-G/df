@@ -25,8 +25,7 @@ vim.api.nvim_create_autocmd("FileType", {
     local lang = vim.treesitter.language.get_lang(ft)
 
     if not vim.treesitter.language.add(lang) then
-      local available = vim.g.ts_available
-        or require("nvim-treesitter").get_available()
+      local available = vim.g.ts_available or require("nvim-treesitter").get_available()
       if not vim.g.ts_available then
         vim.g.ts_available = available
       end
@@ -38,28 +37,15 @@ vim.api.nvim_create_autocmd("FileType", {
     if vim.treesitter.language.add(lang) then
       vim.treesitter.start(args.buf, lang)
       -- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-      -- vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
-      -- vim.wo[0][0].foldmethod = "expr"
     end
   end,
 })
---
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = {
---     "lua",
---     "python",
---     "kotlin",
---     "java",
---     "typescript",
---     "svelte",
---     "html",
---     "css",
---     "sql",
---     "json",
---     "markdown",
---     "javascript",
---   },
---   callback = function()
---     vim.treesitter.start()
---   end,
--- })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "svelte",
+  },
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
