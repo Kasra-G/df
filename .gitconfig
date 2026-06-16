@@ -15,3 +15,5 @@
 	allowedSignersFile = ~/.ssh/allowed_signers
 [init]
 	defaultBranch = main
+[rebase]
+	autoStash = true
