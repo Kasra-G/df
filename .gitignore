@@ -1,6 +1,5 @@
+.config/btop/
 .config/tmux/plugins/*
 !.config/tmux/plugins/tpm
+.kiro/
 .vim/pack/
-.kiro/.cli_bash_history
-.kiro/agents/
-.kiro/sessions/

@@ -1,17 +1,10 @@
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
-    lazy = false,
-    branch = "main",
-    build = ":TSUpdate",
-  },
-  {
-    "themixednuts/nvim-treesitter-svelte",
-    main = "nvim-treesitter-svelte",
-    lazy = false,
+    "romus204/tree-sitter-manager.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {
-      detect_filetypes = false,
+      auto_install = true, -- Automatically installs the parser when you open a file
     },
+    cmd = { "TSManager" },
   },
 }
