@@ -17,3 +17,7 @@
 	defaultBranch = main
 [rebase]
 	autoStash = true
+[pull]
+	rebase = true
+[includeIf "gitdir:/workplace/ghkasra/"]
+	path = ~/.gitconfig.amazon
