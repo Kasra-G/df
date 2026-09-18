@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  printf 'Usage: %s [--formula|--cask] PACKAGE [...]\n' "$0"
+}
+
+readonly brewfile="${DOTFILES_BREWFILE:-$HOME/.df/Brewfile}"
+entry_type="--formula"
+uninstall_options=()
+
+case "${1:-}" in
+  --cask)
+    entry_type="--cask"
+    uninstall_options=(--cask)
+    shift
+    ;;
+  --formula)
+    shift
+    ;;
+  -h | --help)
+    usage
+    exit 0
+    ;;
+  -*)
+    usage >&2
+    exit 2
+    ;;
+esac
+
+if [[ $# -eq 0 ]]; then
+  usage >&2
+  exit 2
+fi
+
+if [[ ! -f "$brewfile" || ! -w "$brewfile" ]]; then
+  printf 'Brewfile is missing or not writable: %s\n' "$brewfile" >&2
+  exit 1
+fi
+
+temporary_brewfile="$(mktemp "${brewfile}.tmp.XXXXXX")"
+trap 'rm -f "$temporary_brewfile"' EXIT
+cp "$brewfile" "$temporary_brewfile"
+
+command brew bundle remove "$entry_type" --file="$temporary_brewfile" "$@"
+if cmp -s "$brewfile" "$temporary_brewfile"; then
+  printf 'No matching Brewfile entry found for: %s\n' "$*" >&2
+  exit 1
+fi
+
+command brew uninstall "${uninstall_options[@]}" "$@"
+chmod 0644 "$temporary_brewfile"
+mv "$temporary_brewfile" "$brewfile"
+trap - EXIT

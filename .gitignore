@@ -1,5 +1,9 @@
 .config/btop/
+.config/gh/hosts.yml
 .config/tmux/plugins/*
 !.config/tmux/plugins/tpm
 .kiro/
+.tmux/resurrect/
+.vim/.netrwhist
 .vim/pack/
+.yarnrc

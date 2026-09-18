@@ -3,10 +3,19 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
-if [[ -f "/opt/homebrew/bin/brew" ]]; then
+typeset -TUx PATH path
+path=("$HOME/.local/bin" $path)
+
+if [[ -x "/opt/homebrew/bin/brew" ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
-elif [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+elif [[ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+autoload -Uz compinit && compinit
+
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
 fi
 
 export LS_COLORS="di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
@@ -18,8 +27,12 @@ export FZF_DEFAULT_OPTS="
 "
 
 if [[ -t 0 && -t 1 ]]; then
-  if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  if command -v direnv >/dev/null 2>&1; then
+    eval "$(direnv hook zsh)"
+  fi
+
+  if [[ -r "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+    source "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
   fi
 
   function zvm_config() {
@@ -27,29 +40,35 @@ if [[ -t 0 && -t 1 ]]; then
     ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
   }
 
-  ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+  ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
+  ZINIT_REVISION="0bd474dbf0620f8a26e8359d382e70548a126c02"
   if [[ ! -d "$ZINIT_HOME" ]]; then
-    mkdir -p "$(dirname "$ZINIT_HOME")"
+    mkdir -p "${ZINIT_HOME:h}"
     git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+  fi
+  if [[ "$(git -C "$ZINIT_HOME" rev-parse HEAD)" != "$ZINIT_REVISION" ]]; then
+    git -C "$ZINIT_HOME" fetch --depth=1 origin "$ZINIT_REVISION"
+    git -C "$ZINIT_HOME" checkout --quiet --detach "$ZINIT_REVISION"
   fi
 
   source "$ZINIT_HOME/zinit.zsh"
-  zinit ice depth=1; zinit light romkatv/powerlevel10k
-  zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
+  zinit ice ver"d05a1b00f9a61f9578bf9dc19b8451942dde8734"
+  zinit light romkatv/powerlevel10k
+  zinit ice ver"91cafe4a09b6670cb8e761aa413e5f7b9e00816f"
+  zinit light jeffreytse/zsh-vi-mode
+  zinit ice ver"0bfcb582e71d3abe604ce67bc0fe5a21f377507e"
   zinit light zsh-users/zsh-syntax-highlighting
+  zinit ice ver"de02bb84ab0af51e328c6ae85ab5555397c31277"
   zinit light zsh-users/zsh-completions
+  zinit ice ver"85919cd1ffa7d2d5412f6d3fe437ebdbeeec4fc5"
   zinit light zsh-users/zsh-autosuggestions
-  zinit light undg/zsh-nvm-lazy-load
-  zinit snippet "https://raw.githubusercontent.com/MichaelAquilina/zsh-you-should-use/refs/heads/master/you-should-use.plugin.zsh"
-  zinit snippet OMZP::git
-  zinit snippet OMZP::sudo
-  zinit snippet OMZP::archlinux
-  zinit snippet OMZP::aws
-  zinit snippet OMZP::kubectl
-  zinit snippet OMZP::kubectx
-  zinit snippet OMZP::command-not-found
+  zinit ice ver"5f3d129864ee4505043d88c3486224f1d75b692e"
+  zinit light MichaelAquilina/zsh-you-should-use
+  zinit snippet "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/0ee67f042872d1dfab74270c31867771ca35aef4/plugins/git/git.plugin.zsh"
+  zinit snippet "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/0ee67f042872d1dfab74270c31867771ca35aef4/plugins/sudo/sudo.plugin.zsh"
+  zinit snippet "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/0ee67f042872d1dfab74270c31867771ca35aef4/plugins/aws/aws.plugin.zsh"
+  zinit snippet "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/0ee67f042872d1dfab74270c31867771ca35aef4/plugins/command-not-found/command-not-found.plugin.zsh"
 
-  autoload -Uz compinit && compinit
   zinit cdreplay -q
   [[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh"
 
@@ -65,7 +84,7 @@ if [[ -t 0 && -t 1 ]]; then
   zstyle ':completion:*' menu no
   zstyle ':fzf-tab:complete:cd:*' fzf-preview 'gls --color $realpath'
   zstyle ':fzf-tab:*' query-string ''
-  zstyle ':fzf-tab:*' fzf-options $(echo $FZF_DEFAULT_OPTS)
+  zstyle ':fzf-tab:*' fzf-options ${(z)FZF_DEFAULT_OPTS}
 
   eval "$(fzf --zsh)"
 
@@ -103,31 +122,14 @@ fi
 
 [[ -z "$SSH_AUTH_SOCK" ]] && eval "$(ssh-agent -s)" >/dev/null
 
-if command -v brew >/dev/null 2>&1; then
-  export BREW_HOME="$(brew --prefix)/bin"
-  export PATH="$BREW_HOME:$PATH"
-fi
-
-export PATH="$XDG_DATA_HOME/bob/nvim-bin:$PATH"
-
-[[ -s "$HOME/.config/envman/load.sh" ]] && source "$HOME/.config/envman/load.sh"
-
-export NVM_DIR="$HOME/.config/nvm"
-[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
-[[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
-
-[[ -s "$HOME/.bun/_bun" ]] && source "$HOME/.bun/_bun"
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-if [[ -x "$HOME/.local/bin/mise" ]]; then
-  eval "$("$HOME/.local/bin/mise" activate zsh)"
-fi
-if [[ -t 0 && -t 1 && -r "$HOME/.local/share/mise/completions.zsh" ]]; then
-  source "$HOME/.local/share/mise/completions.zsh"
+if [[ -r "$XDG_DATA_HOME/mise/completions.zsh" ]]; then
+  source "$XDG_DATA_HOME/mise/completions.zsh"
 fi
 
 [[ -r "$HOME/.zshrc.amazon" ]] && source "$HOME/.zshrc.amazon"
 
-typeset -TUx PATH path
+path=("${(@)path:#${HOME}/scripts}")
+path=("${(@)path:#${HOME}/.bun/bin}")
+path=("${(@)path:#${XDG_DATA_HOME}/bob/nvim-bin}")
+path=("${(@)path:#/home/linuxbrew/.linuxbrew/opt/node@22/bin}")
 export PATH="${(j[:])path}"

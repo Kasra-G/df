@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+  printf 'Usage: %s WORKSPACE\n' "$0" >&2
+  exit 2
+fi
+
+readonly workspace="$1"
+readonly workplace_root="${WORKPLACE_ROOT:-$HOME/workplace}"
+readonly workspace_dir="$workplace_root/$workspace"
+readonly source_dir="$workspace_dir/src"
+readonly session="$workspace"
+
+if [[ ! -d "$source_dir" ]]; then
+  printf 'Workspace source directory does not exist: %s\n' "$source_dir" >&2
+  exit 1
+fi
+
+packages=()
+for path in "$source_dir"/*; do
+  [[ -d "$path" ]] && packages+=("$path")
+done
+
+if [[ ${#packages[@]} -eq 0 ]]; then
+  printf 'Workspace has no packages: %s\n' "$workspace_dir" >&2
+  exit 1
+fi
+
+if tmux has-session -t "=$session" 2>/dev/null; then
+  tmux kill-session -t "=$session"
+fi
+
+tmux new-session -d -s "$session" -c "$workspace_dir"
+
+window_index=2
+for path in "${packages[@]}"; do
+  package="$(basename "$path")"
+  tmux new-window -t "$session:$window_index" -n "$package" -c "$path"
+  top_pane="$(tmux display-message -p -t "$session:$window_index" '#{pane_id}')"
+  tmux split-window -t "$session:$window_index" -c "$path"
+  tmux resize-pane -t "$top_pane" -Z
+  tmux send-keys -t "$top_pane" 'nvim README.md' C-m
+  ((window_index += 1))
+done
+
+tmux kill-window -t "$session:1"
+exec tmux attach-session -t "=$session"

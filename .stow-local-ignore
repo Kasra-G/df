@@ -1,0 +1,8 @@
+(^|/)\.git($|/)
+^\.gitignore$
+^\.gitmodules$
+^\.stow-local-ignore$
+^Brewfile$
+^/\.config/mise($|/)
+^README\.md$
+^install\.sh$
